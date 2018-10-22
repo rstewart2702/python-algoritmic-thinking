@@ -13,8 +13,9 @@
 # and so on...
 #
 # ...down to:
-# N-1  N-(N-2)=2 (0,1)   (1,2)   ... ... ... ... ... ... ... ... ... ... ... (N-2,N-1)
-# N    N-(N-1)=1 (0,0)   (1,1)   ... ... ... ... ... ... ... ... ... ... ... (N-2,N-2) (N-1,N-1)
+# N-3  N-(N-3)=3 (0,2)   (1,3)   (2,4)   ... ... ... ... ... ... ..(N-4,N-1) (N-3,N-1)
+# N-1  N-(N-2)=2 (0,1)   (1,2)   ... ... ... ... ... ... ... ... ... ... ... ... ...   (N-2,N-1)
+# N    N-(N-1)=1 (0,0)   (1,1)   ... ... ... ... ... ... ... ... ... ... ... ... ...   (N-2,N-2) (N-1,N-1)
 #
 # Seems that we could "memorize/store" these?  Perhaps
 # calculate sums for each, and as we must calculate
@@ -37,5 +38,6 @@
 #
 # Why couldn't we build up the sub-sums in a "bottom-up" fashion?
 # That might lead to a divide-and-conquer, possibly O(N * lg N) solution.
-#
 # 
+# What in the world leads to a linear-time solution, if there is one?
+# We must find a way to keep things 
