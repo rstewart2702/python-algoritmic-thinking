@@ -40,4 +40,4 @@
 # That might lead to a divide-and-conquer, possibly O(N * lg N) solution.
 # 
 # What in the world leads to a linear-time solution, if there is one?
-# We must find a way to keep things 
+# We must find a way to keep things as a linear time search?
