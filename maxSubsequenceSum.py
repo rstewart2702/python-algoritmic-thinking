@@ -14,7 +14,7 @@
 #
 # ...down to:
 # N-1  N-(N-2)=2 (0,1)   (1,2)   ... ... ... ... ... ... ... ... ... ... ... (N-2,N-1)
-# N    N-(N-1)=1 (0,0)   (1,1)   ... ... ... ... ... ... ... ... ... ... ... (N-1,N-1)
+# N    N-(N-1)=1 (0,0)   (1,1)   ... ... ... ... ... ... ... ... ... ... ... (N-2,N-2) (N-1,N-1)
 #
 # Seems that we could "memorize/store" these?  Perhaps
 # calculate sums for each, and as we must calculate
