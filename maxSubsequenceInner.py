@@ -40,6 +40,7 @@ def inner(a, t, N):
 #
 #   t <= i < j < t+N
 #
+# This is almost what one would write in Dijkstra's guarded command language!
 def inner2(a, t, N):
     i,j,s,sp,jp = t,t+1,a[t],0,t-1
     #
