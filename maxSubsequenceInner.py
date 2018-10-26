@@ -59,6 +59,20 @@ def inner2(a, t, N):
     #
     return (a, a[i:jp+1], a[i:j+1], j, jp, s, sp)
 
+"""
+Unfortunately, it turns out that this does NOT find maximum subsequence sums!
+It does find "local black holes," subsequences which are "negative enough" to
+"swallow up" the preceding subsequence that adds up to a positive number.
+
+But the subsequence immediately to the left of the "black hole" is not necessarily
+a maximum subsequence:  in general, there's no proof that it could not be increased
+by simply removing elements from either end.
+
+What's more, there's not much evidence that a "black hole" is more than a "localized"
+phenomenon:  there's nothing in general to guarantee that "more stuff" to the left of the
+"black hole" is not large enough to cancel it out anyhow!
+"""
+
 
 if __name__ == "__main__":
     print (inner2(a3, 0, len(a3)))
