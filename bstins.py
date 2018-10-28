@@ -21,6 +21,8 @@ def insert(t,ptr,v):
 def search(t,ptr,v):
     if (t[ptr]["key"] == v):
         return True
+    if (t[ptr]["key"] == -1):
+        return False
     if (t[ptr]["key"] < v):
         search(t,t[ptr]["l"],v)
     else:
