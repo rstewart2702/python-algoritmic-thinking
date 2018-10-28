@@ -18,6 +18,30 @@ def insert(t,ptr,v):
             
     #
 
+def insertR(t,ptr,v):
+    if (ptr == -1):
+        t.append({'key': v, 'l':-1, 'r':-1})
+        
+    #
+    if (t[ptr]['key'] < v):
+        t[ptr]['r'] = insertR(t,t[ptr]['r'],v)
+    else:
+        t[ptr]['r'] = insertR(t,t[ptr]['l'],v)
+
+def insert1(t,ptr,v):
+    if (t[ptr]['key'] < v):
+        if (t[ptr]['r'] == -1):
+            t.append({'key': v, 'l': -1, 'r': -1})
+            t[ptr]['r'] = len(t)-1
+        else:
+            insert1(t,t[ptr]['r'],v)
+    else:
+        if (t[ptr]['l'] == -1):
+            t.append({'key': v, 'l': -1, 'r': -1})
+            t[ptr]['l'] = len(t)-1
+        else:
+            insert1(t,t[ptr]['l'],v)
+
 def search(t,ptr,v):
     if (ptr == -1):
         return False
@@ -60,7 +84,7 @@ def buildTree(values):
     tree = [r]
     #
     for v in values[1:]:
-        insert(tree,0,v)
+        insert1(tree,0,v)
     return tree
 
 def bstDistance(values, n, node1, node2): 
