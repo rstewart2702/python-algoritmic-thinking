@@ -19,14 +19,14 @@ def insert(t,ptr,v):
     #
 
 def search(t,ptr,v):
-    if (t[ptr] == -1):
+    if (ptr == -1):
         return False
     if (t[ptr]["key"] == v):
         return True
     if (t[ptr]["key"] < v):
-        search(t,t[ptr]["l"],v)
+        return search(t,t[ptr]["r"],v)
     else:
-        search(t,t[ptr]["r"],v)
+        return search(t,t[ptr]["l"],v)
     
 
 def distShell(t,node1, node2):
