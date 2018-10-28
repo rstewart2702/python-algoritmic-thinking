@@ -72,41 +72,18 @@ def distShell(t,node1, node2):
             curr = t[curr]["l"]
     #
     print ("found ",node1,", now searching for ",node2,":")
-    while (t[curr]["key"] != node2):
-        # it might be more "honest" to simply increase hop-count
-        # when traversing "down" into a subtree, and then subtracting
-        # hops when you must return from a subtree because you couldn't
-        # find the node2...
-        # There's another possible optimization:
-        #   if node2 falls between current and parent,
-        #   then we may hop up to parent,
-        #        and then drop down to the right-hand child,
-        #        counting hops all the way downwards.
-        #   otherwise, we pop up to the parent, adding one to the hop count.
+    parent = stk[len(stk)-1]
+    while (not(t[curr]['key'] < node2 and node2 <= t[parent]['key'])):
+        hop = hop + 1
+        curr = stk.pop()
         parent = stk[len(stk)-1]
-        if (t[curr]['key'] < node2 and node2 <= t[parent]['key']):
-            hop = hop + 2 # up to parent, down to right child of parent
-            curr = stk.pop()
-            curr = t[t[curr]['r']]['l']
-            ### AND NOW WE NEED A LOOP TO TRAVERSE BACK DOWN TO node2,
-            ### WHICH IS GUARANTEED TO RESIDE IN TREE ROOTED AT
-            ### t[curr].
+    #
+    while (t[curr]['key'] != node2):
+        hop = hop + 1
+        if (t[curr]['key'] < node2):
+            curr = t[curr]['r']
         else:
-            hop = hop + 1
-            curr = stk.pop()
-        ##
-        if (search(t,t[curr]["r"],node2)):
-            print (node2," is to right of ",t[curr]['key'])
-            hop = hop + 1
-            curr = t[curr]["r"]
-        elif (search(t,t[curr]["l"],node2)):
-            print (node2, "is to the left of ",t[curr]['key'])
-            hop = hop + 1
-            curr = t[curr]["l"]
-        else:
-            print (node2, "must be found via parent of ",t[curr]['key']," which is :",t[stk[len(stk)-1]]['key'])
-            hop = hop + 1
-            curr = stk.pop()
+            curr = t[curr]['l']
     #
     return hop
 
