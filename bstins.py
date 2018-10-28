@@ -54,28 +54,37 @@ def search(t,ptr,v):
     
 
 def distShell(t,node1, node2):
+    # swap the ordering of node1 and node2, just to guarantee
+    # that node1 < node2:
+    if (node2 < node1):
+        tmp=node2
+        node2=node1
+        node1=tmp
+    #
     curr = 0
-    stk = [curr]
+    stk = []
     hop = 0
     while (t[curr]["key"] != node1):
-        if (node1 <= t[curr]["key"]):
-            stk.append(t[curr]["r"])
+        stk.append(curr)
+        if (t[curr]['key'] <= node1):
             curr = t[curr]["r"]
         else:
-            stk.append(t[curr]["l"])
             curr = t[curr]["l"]
     #
+    print ("found ",node1,", now searching for ",node2,":")
     while (t[curr]["key"] != node2):
-        if (t[curr]["key"] < node2):
-            if (search(t,t[curr]["r"],node2)):
-                hop = hop + 1
-                curr = t[curr]["r"]
-            elif (search(t,t[curr]["l"],node2)):
-                hop = hop + 1
-                curr = t[curr]["l"]
-            else:
-                hop = hop + 1
-                curr = stk.pop()
+        if (search(t,t[curr]["r"],node2)):
+            print (node2," is to right of ",t[curr]['key'])
+            hop = hop + 1
+            curr = t[curr]["r"]
+        elif (search(t,t[curr]["l"],node2)):
+            print (node2, "is to the left of ",t[curr]['key'])
+            hop = hop + 1
+            curr = t[curr]["l"]
+        else:
+            print (node2, "must be found via parent of ",t[curr]['key']," which is :",t[stk[len(stk)-1]]['key'])
+            hop = hop + 1
+            curr = stk.pop()
     #
     return hop
 
