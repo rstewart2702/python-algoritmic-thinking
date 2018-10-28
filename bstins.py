@@ -59,20 +59,20 @@ def distShell(t,node1, node2):
     hop = 0
     while (t[curr]["key"] != node1):
         if (node1 <= t[curr]["key"]):
-            stk.append(t[curr]["l"])
-            curr = t[curr]["l"]
-        else:
             stk.append(t[curr]["r"])
             curr = t[curr]["r"]
+        else:
+            stk.append(t[curr]["l"])
+            curr = t[curr]["l"]
     #
     while (t[curr]["key"] != node2):
         if (t[curr]["key"] < node2):
-            if (search(t,t[curr]["l"],node2)):
+            if (search(t,t[curr]["r"],node2)):
+                hop = hop + 1
+                curr = t[curr]["r"]
+            elif (search(t,t[curr]["l"],node2)):
                 hop = hop + 1
                 curr = t[curr]["l"]
-            elif (search(t,t[curr]["r"],node2)):
-                hop = hop + -1
-                curr = t[curr]["r"]
             else:
                 hop = hop + 1
                 curr = stk.pop()
