@@ -72,11 +72,18 @@ def distShell(t,node1, node2):
             curr = t[curr]["l"]
     #
     print ("found ",node1,", now searching for ",node2,":")
-    parent = stk[len(stk)-1]
-    while (not(t[curr]['key'] < node2 and node2 <= t[parent]['key'])):
+    if (curr != 0):
+        parent = stk[len(stk)-1]
+    else:
+        parent = -1
+    while (    curr != 0
+           and not(t[curr]['key'] < node2 and node2 <= t[parent]['key'])):
         hop = hop + 1
         curr = stk.pop()
-        parent = stk[len(stk)-1]
+        if (curr != 0):
+            parent = stk[len(stk)-1]
+        else:
+            parent = -1
     #
     while (t[curr]['key'] != node2):
         hop = hop + 1
