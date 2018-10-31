@@ -77,7 +77,7 @@ def distShell(t,node1, node2):
     else:
         parent = -1
     while (    curr != 0
-           and not(t[curr]['key'] < node2 and node2 <= t[parent]['key'])):
+           and not(t[curr]['key'] < node2 and node2 < t[parent]['key'])):
         print ("ascending; ", node2, " does NOT fall between ", t[curr]['key'], "and ", t[parent]['key'])
         hop = hop + 1
         curr = stk.pop()
