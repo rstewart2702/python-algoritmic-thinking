@@ -1,34 +1,5 @@
 
 def insert(t,ptr,v):
-    # recursive insert into tree t
-    #
-    if (t[ptr]["key"] < v):
-        if (t[ptr]["r"] == -1):
-            t.append({"key": v, "l": -1, "r": -1})
-            t[ptr]["r"] = len(t)-1
-        else:
-            insert(t,t[ptr]["r"],v)
-        #
-    else:
-        if (t[ptr]["l"] == -1):
-            t.append({"key": v, "l": -1, "r": -1})
-            t[ptr]["l"] = len(t)-1
-        else:
-            insert(t,t[ptr]["r"],v)
-            
-    #
-
-def insertR(t,ptr,v):
-    if (ptr == -1):
-        t.append({'key': v, 'l':-1, 'r':-1})
-        
-    #
-    if (t[ptr]['key'] < v):
-        t[ptr]['r'] = insertR(t,t[ptr]['r'],v)
-    else:
-        t[ptr]['r'] = insertR(t,t[ptr]['l'],v)
-
-def insert1(t,ptr,v):
     if (t[ptr]['key'] < v):
         if (t[ptr]['r'] == -1):
             t.append({'key': v, 'l': -1, 'r': -1})
@@ -113,7 +84,7 @@ def buildTree(values):
     tree = [r]
     #
     for v in values[1:]:
-        insert1(tree,0,v)
+        insert(tree,0,v)
     return tree
 
 def bstDistance(values, n, node1, node2): 
@@ -121,11 +92,8 @@ def bstDistance(values, n, node1, node2):
     if (n == 0):
         return -1
     #
-    r = {"key": values[0], "l" : -1, "r": -1 }
-    tree = [r]
-    curr = tree[0]
+    tree = buildTree(values)
     # 
-    for v in values[1:]:
-        insert(tree,0,v)
     #
     return distShell(tree,node1,node2)
+
