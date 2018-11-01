@@ -5,13 +5,13 @@ def insert(t,ptr,v):
             t.append({'key': v, 'l': -1, 'r': -1})
             t[ptr]['r'] = len(t)-1
         else:
-            insert1(t,t[ptr]['r'],v)
+            insert(t,t[ptr]['r'],v)
     else:
         if (t[ptr]['l'] == -1):
             t.append({'key': v, 'l': -1, 'r': -1})
             t[ptr]['l'] = len(t)-1
         else:
-            insert1(t,t[ptr]['l'],v)
+            insert(t,t[ptr]['l'],v)
 
 def search(t,ptr,v):
     if (ptr == -1):
