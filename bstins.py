@@ -52,7 +52,7 @@ def distShell(t,node1,node2):
     #       t[curr]['key'] != node1 and t[curr]['key'] != node2
     #   and not(node1 < t[curr]['key'] and t[curr]['key'] < node2)
     # simplifies to:
-    #   t[curr]['key'] < node1 or node2 < t[curr]['key']
+    #   node2 < t[curr]['key'] or t[curr]['key'] < node1
     # which is the loop guard used here.
     while (t[curr]['key'] < node1 or node2 < t[curr]['key']):
         # i.e., while both node1 and node2 lie to the right of the current node
