@@ -1,5 +1,5 @@
 class BSTNode:
-    def BSTNode(self, data, lChild, rChild):
+    def __init__(self, data, lChild, rChild):
         self._data = data
         self._lChild = lChild
         self._rChild = rChild
