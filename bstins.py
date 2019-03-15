@@ -1,4 +1,18 @@
+class BSTNode:
+    def BSTNode(self, data, lChild, rChild):
+        self._data = data
+        self._lChild = lChild
+        self._rChild = rChild
 
+    def lChild(self):
+        return self.lChild
+
+    def rChild(self):
+        return self.rChild
+
+    
+
+    
 def insert(t,ptr,v):
     if (t[ptr]['key'] < v):
         if (t[ptr]['r'] == -1):
