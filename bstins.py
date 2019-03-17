@@ -1,3 +1,34 @@
+# Should a binary-search-tree be a reference to a
+# network of interconnected BSTNode's?
+# And how does that change the shape of the 
+# insertion process/function?
+
+class BSTree:
+    def __init__(self, node):
+        self._root = node
+    #
+    def _insert(self, node, v):
+        if (node.key() < v):
+            if (node.rChild == None):
+                node
+
+    def insert(self, v):
+        if (self._root = None):
+            return self._root
+        self._insert(self._root, v)
+
+    def _insert(self, t, v):
+        if (t.key() < v):
+            if (t.rChild() = None):
+                t._rChild = BSTNode(v, None, None)
+            else:
+                self._insert(t.rChild(),v)
+        else:
+            if(t.lChild() = None):
+                t._lChild = BSTNode(v, None, None)
+            else:
+                self._insert(t.lChild(),v)
+
 class BSTNode:
     def __init__(self, data, lChild, rChild):
         self._data = data
@@ -5,10 +36,13 @@ class BSTNode:
         self._rChild = rChild
 
     def lChild(self):
-        return self.lChild
+        return self._lChild
 
     def rChild(self):
-        return self.rChild
+        return self._rChild
+
+    def key(self):
+        return self._data._key
 
     
 
