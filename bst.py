@@ -51,17 +51,27 @@ class BSTree:
         if treeRoot is None:
             return 0  # what is the distance when the tree is "empty?"
         #
-        distance = 0
-        #
         while v2 < treeRoot.key() or treeRoot.key() < v1:
             if v2 < treeRoot.key():
                 treeRoot = treeRoot.lChild()
+                # i.e., both v1, v2 lie in the left subtree of treeRoot
             else:
                 treeRoot = treeRoot.rChild()
+                # i.e., both v1, v2 lie in the right subtree of treeRoot
         #
-        # Now, treeRoot.key() <= v2 and v1 <= treeRoot.key()
+        # Now, v1 <= treeRoot.key() and treeRoot.key() <= v2
         # Assuming that v1 != v2, then:
-        # we must calculate the path length from treeRoot down to v1
+        #   treeRoot.key() is the value of the "deepest common ancestor";
+        #   v1 lies in the left subtree of treeRoot AND v2 lies in the right subtree of treeRoot;
+        # If it happens to be the case that:
+        #   v1 == treeRoot.key() and v2 == treeRoot.key()
+        # then:
+        #   v1 == v2 by transitivity of ==.
+        # If v1 == treeRoot.key() and treeRoot.key() < v2,
+        # then the distance between the v1, v2 will simply be the number of hops down from v1 to v2.
+        # Similarly for v1 < treeRoot.key() and treeRoot.key() == v2, eh?
+        # 
+        # So, we must calculate the path length from treeRoot down to v1
         # and then calculate the path length from treeRoot down to v2:
         return self._pathFromRoot(treeRoot, v1) + self._pathFromRoot(treeRoot, v2)
 
