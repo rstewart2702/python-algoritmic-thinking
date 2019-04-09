@@ -73,6 +73,9 @@ phenomenon:  there's nothing in general to guarantee that "more stuff" to the le
 "black hole" is not large enough to cancel it out anyhow!
 """
 
+def preprocess(a):
+        
+
 
 if __name__ == "__main__":
     print (inner2(a3, 0, len(a3)))
