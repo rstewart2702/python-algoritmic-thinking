@@ -43,6 +43,20 @@ class BSTree:
         self._inorderPrint(treeRoot.rChild())
 
     def bstDistance(self, v1, v2):
+        """Calculates the distance, i.e., the number of "graph edges" on a path from the node
+that has v1 as its key to the node that has v2 as its key.
+The key insight is that:
+the path from root down to each the two nodes, v1 and v2, may, in general, have some overlap,
+i.e., there may be some edges in common, some overlap, between the root-to-v1 path and 
+the root-to-v2 path.
+So, if we just tracked those edges, and calculated those two paths, then calculate the intersection
+of those two sets, and subtract the intersection from both root-to-v paths, then we'd have two
+paths, the lengths of which add up to the distance between v1 and v2.
+By taking advantage of the extra information bestowed by the binary-search-tree property,
+we don't need to keep track of two root-to-node paths, and then try to calculate their 
+intersection, etc.  We can deduce the properties of the root-to-node paths from the extra
+information the binary search tree structure gives to us "for free."
+"""
         if v2 < v1:
             v1, v2 = v2, v1  # swap them!
         #
