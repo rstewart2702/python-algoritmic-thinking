@@ -8,6 +8,9 @@ BSTree class.
 
 The unit tests herein use the standard unittest module provided
 by Python 3.x and higher.
+
+This can be run from the command line with something like:
+  python -m unittest test_bst
 """
 
 class testBSTDistanceT1(unittest.TestCase):
