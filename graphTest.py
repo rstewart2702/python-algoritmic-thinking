@@ -1,6 +1,5 @@
 import unittest
 
-import graph
 from graph import Graph as Graph, Vertex as Vertex
 
 class testGraphBfs1(unittest.TestCase):
