@@ -37,21 +37,27 @@ of vertices to return, which provides a breath-first-ordering of the
 vertices in the graph."""
         currV = None
         queue = [startVtx] # the "what to visit next"
-        seen = {}  # set of seen vertices, as a dictionary
+        seen = {startVtx : True}  # set of seen vertices, as a dictionary
+        visited = [] # start out with an empty "visited list"
         # append to back, pop off front
         while(len(queue) != 0):
-            currV = queue.pop()
-            self.visit(currV)
-            self.enqueue(queue,currV.adjList,seen)
+            currV = queue.pop(0)
+            self.visit(currV,visited)
+            self.enqueue(queue,self.nodes[currV].adjList,seen)
+            #
+            # print(currV,visited,queue,seen,sep='::')
+            # print('\n')
+        #
+        return visited
     #
-    def visit(self,vertex):
+    def visit(self,vertex,visited):
         """default implementation of \"visit a vertex.\""""
-        print(vertex.vtx)
+        visited.append(vertex)
     #
     def enqueue(self, fifoQ, adjList, seenDict):
         """default implementation of \"handle the adjacency list of a vertex.\""""
         for locVertex in adjList:
-            if seenDict.get(locVertex.vtx) is None:
-                seenDict[locVertex.vtx]=True
-                fifoQ.append(locVertex.vtx)
+            if seenDict.get(locVertex) is None:
+                seenDict[locVertex]=True
+                fifoQ.append(locVertex)
                 
