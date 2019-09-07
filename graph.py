@@ -83,18 +83,28 @@ The methods bfs and enqueue are overridden since the behavior is different...
         return (visited, paths)
     #
     def enqueue(self, fifoQ, adjList, seenDict, paths,currV):
-        print('before enqueue:',paths,sep=' ')
+        # print('before enqueue:',paths,sep=' ')
         for locVertex in adjList:
             if seenDict.get(locVertex) is None:
                 seenDict[locVertex]=True
                 fifoQ.append(locVertex)
-                paths[locVertex]=paths[currV].append(locVertex)
+                paths[locVertex]=paths[currV].copy()
+                paths[locVertex].append(locVertex)
                 # paths[locVertex]=[locVertex]
             else:
+                # The adjacent vertex has been seen before.
+                #
+                print('Evaluating:',paths[locVertex])
+                print('against:',paths[currV])
                 currLen = len(paths[locVertex])
                 newLen = len(paths[currV])+1
                 if newLen < currLen:
-                    paths[locVertex] = paths[currV].append(locVertex)
-        print('after enqueue:',paths,sep=' ')
+                    # if the length of the "newer path" is shorter
+                    # then it should replace the existing path
+                    print('Replacing path:',paths[locVertex])
+                    paths[locVertex] = paths[currV].copy()
+                    paths[locVertex].append(locVertex)
+                    print('With path:',paths[locVertex])
+        # print('after enqueue:',paths,sep=' ')
 
                 
