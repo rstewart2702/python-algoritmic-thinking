@@ -61,3 +61,40 @@ vertices in the graph."""
                 seenDict[locVertex]=True
                 fifoQ.append(locVertex)
                 
+
+class GraphPaths(Graph):
+    """Derived from class Graph.
+The methods bfs and enqueue are overridden since the behavior is different...
+"""
+    def bfs(self, startVtx):
+        currV = None
+        queue = [startVtx]
+        seen = {startVtx : True}
+        visited = []
+        paths = {startVtx : [] }
+        for v in self.nodes[startVtx].adjList:
+            paths[v] = [v]
+        #
+        while(len(queue) != 0):
+            currV = queue.pop(0)
+            self.visit(currV,visited)
+            self.enqueue(queue,self.nodes[currV].adjList,seen,paths,currV)
+        #
+        return (visited, paths)
+    #
+    def enqueue(self, fifoQ, adjList, seenDict, paths,currV):
+        print('before enqueue:',paths,sep=' ')
+        for locVertex in adjList:
+            if seenDict.get(locVertex) is None:
+                seenDict[locVertex]=True
+                fifoQ.append(locVertex)
+                paths[locVertex]=paths[currV].append(locVertex)
+                # paths[locVertex]=[locVertex]
+            else:
+                currLen = len(paths[locVertex])
+                newLen = len(paths[currV])+1
+                if newLen < currLen:
+                    paths[locVertex] = paths[currV].append(locVertex)
+        print('after enqueue:',paths,sep=' ')
+
+                
