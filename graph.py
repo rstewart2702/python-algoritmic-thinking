@@ -94,17 +94,17 @@ The methods bfs and enqueue are overridden since the behavior is different...
             else:
                 # The adjacent vertex has been seen before.
                 #
-                print('Evaluating:',paths[locVertex])
-                print('against:',paths[currV])
+                # print('Evaluating:',paths[locVertex])
+                # print('against:',paths[currV])
                 currLen = len(paths[locVertex])
                 newLen = len(paths[currV])+1
                 if newLen < currLen:
                     # if the length of the "newer path" is shorter
                     # then it should replace the existing path
-                    print('Replacing path:',paths[locVertex])
+                    # print('Replacing path:',paths[locVertex])
                     paths[locVertex] = paths[currV].copy()
                     paths[locVertex].append(locVertex)
-                    print('With path:',paths[locVertex])
+                    # print('With path:',paths[locVertex])
         # print('after enqueue:',paths,sep=' ')
 
                 
