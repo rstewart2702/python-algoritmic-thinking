@@ -11,7 +11,7 @@ class DisjointSets:
     def __init__(self, vertices):
         self.sets = {}
         for v in vertices:
-            self.sets[v.vtx] = UFNode(v)
+            self.sets[v] = UFNode(v)
     #
     def union(self, v1, v2):
         self.sets[v2].parent = v1
