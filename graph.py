@@ -67,6 +67,7 @@ class GraphPaths(Graph):
 The methods bfs and enqueue are overridden since the behavior is different...
 """
     def bfs(self, startVtx):
+        """Derives a \"visited list\" and a \"list-of-paths-for-each-destination.\""""
         currV = None
         queue = [startVtx]
         seen = {startVtx : True}
