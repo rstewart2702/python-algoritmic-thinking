@@ -19,6 +19,10 @@ class DisjointSets:
         self.sets[rep2v].parent = rep1v
     #
     def union1(self, v1, v2):
+        """This version of the \"union\" operation doesn't do enough!  It does
+not perform needed path-traversal to get to the ultimate parent of either
+of the vertices in question.
+The test output should prove this out."""
         self.sets[v2].parent = v1
     #
     def find(self, vtx):
@@ -40,10 +44,13 @@ if __name__ == '__main__':
     x.union('v5','v6')
     x.union('v9','v8')
     x.union('v11','v10')
+    print([ x.find(itm).vtx for itm in vList] )
     x.union('v9','v10')
+    print([ x.find(itm).vtx for itm in vList] )
     print(x.find('v8').vtx)
     print([ x.find(itm).vtx for itm in vList ] )
-
+    print()
+    #
     y = DisjointSets(vList)
     y.union1('v5','v6')
     y.union1('v9','v8')
@@ -53,6 +60,7 @@ if __name__ == '__main__':
     y.union1('v9','v10')
     print('Representative of v11 is: ',y.find('v11').vtx)
     print('Representative of v10 is: ',y.find('v10').vtx)
+    print([ y.find(itm).vtx for itm in vList] )
     #
     print(y.find('v8').vtx)
     print([ y.find(itm).vtx for itm in vList] )
