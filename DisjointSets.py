@@ -14,8 +14,11 @@ class DisjointSets:
             self.sets[v] = UFNode(v)
     #
     def union(self, v1, v2):
-        rep1 = self.find(v1)
-        rep2 = self.find(v2)
+        rep1v = self.find(v1).vtx
+        rep2v = self.find(v2).vtx
+        self.sets[rep2v].parent = rep1v
+    #
+    def union1(self, v1, v2):
         self.sets[v2].parent = v1
     #
     def find(self, vtx):
@@ -27,7 +30,7 @@ the vertex named by vtx."""
             curV = self.sets[curV.parent]
             find_hops = find_hops+1
         #
-        print('Found ',curV.vtx, ' in ',find_hops,' hops')
+        # print('Found ',curV.vtx, ' in ',find_hops,' hops')
         return curV
     
 if __name__ == '__main__':
@@ -41,4 +44,15 @@ if __name__ == '__main__':
     print(x.find('v8').vtx)
     print([ x.find(itm).vtx for itm in vList ] )
 
-    
+    y = DisjointSets(vList)
+    y.union1('v5','v6')
+    y.union1('v9','v8')
+    y.union1('v11','v10')
+    print('Representative of v10 is: ',y.find('v10').vtx)
+    print([ y.find(itm).vtx for itm in vList] )
+    y.union1('v9','v10')
+    print('Representative of v11 is: ',y.find('v11').vtx)
+    print('Representative of v10 is: ',y.find('v10').vtx)
+    #
+    print(y.find('v8').vtx)
+    print([ y.find(itm).vtx for itm in vList] )
