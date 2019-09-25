@@ -1,6 +1,9 @@
 import unittest
 
-from graph import Graph as Graph, Vertex as Vertex, GraphPaths as GraphPaths
+from graph import Graph as Graph, \
+     Vertex as Vertex, \
+     GraphPaths as GraphPaths # , \
+#      GraphWPaths as GraphWPaths
 
 class testGraphBfs1(unittest.TestCase):
     def setUp(self):
@@ -45,6 +48,26 @@ class testGraphBfsPaths(unittest.TestCase):
 
     def testBfsPaths1(self):
         self.assertEqual(
-            (['v3', 'v1', 'v8', 'v2', 'v4', 'v7', 'v10', 'v12', 'v5', 'v6', 'v9', 'v11'], {'v3': [], 'v1': ['v1'], 'v8': ['v8'], 'v2': ['v1', 'v2'], 'v4': ['v1', 'v4'], 'v7': ['v8', 'v7'], 'v10': ['v8', 'v10'], 'v12': ['v8', 'v12'], 'v5': ['v1', 'v4', 'v5'], 'v6': ['v8', 'v7', 'v6'], 'v9': ['v8', 'v10', 'v9'], 'v11': ['v8', 'v10', 'v11']}),
+            (['v3', 'v1', 'v8', 'v2', 'v4', 'v7', 'v10', 'v12', 'v5', 'v6', 'v9', 'v11'], \
+             {'v3': [],
+              'v1': ['v1'],
+              'v8': ['v8'],
+              'v2': ['v1', 'v2'],
+              'v4': ['v1', 'v4'],
+              'v7': ['v8', 'v7'],
+              'v10': ['v8', 'v10'],
+              'v12': ['v8', 'v12'],
+              'v5': ['v1', 'v4', 'v5'],
+              'v6': ['v8', 'v7', 'v6'],
+              'v9': ['v8', 'v10', 'v9'],
+              'v11': ['v8', 'v10', 'v11']}),
             self.gLoc1.bfs('v3')
             )
+
+class testGraphBfsWPaths(unittest.TestCase):
+    """Tests for weighted simple graphs, to test the \"Dijkstra all-points-shortest-paths\" computation."""
+    def setUp(self):
+        self.gLoc1 = \
+                   GraphWPaths.gBuild( [
+                       Vertex.newV('v1').adjAdd([('v4',2),('v2',3),('v3',10),('v8',9)])
+                       ] )
