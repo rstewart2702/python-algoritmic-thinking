@@ -109,3 +109,32 @@ The methods bfs and enqueue are overridden since the behavior is different...
         # print('after enqueue:',paths,sep=' ')
 
                 
+class GraphWPaths(GraphPaths):
+    """Derived from class GraphPaths, but overrides the enqueue method, as its behavior
+is again different.
+Also, the assumption is that adjacency lists will be ordered in ascending order by
+weight of the corresponding edge."""
+    #
+    def enqueue(self, queue, adjList, seenDict, paths, currV):
+        for locVertex in adjList:
+            if seenDict.get(locVertex) is None:
+                seenDict[locVertex] = True
+                queue.append(locVertex)
+                paths[locVertex]=paths[currV].copy()
+                paths[locVertex].append(locVertex)
+            else:
+                currLen = 0
+                for li in paths[locVertex]:
+                    currLen = currLen + li[1]
+                #
+                newLen = 0
+                for li in paths[currV]:
+                    newLen = newLen + li[1]
+                #
+                # If the length of the "newer path" is shorter
+                # then it should replace the existing path.
+                if newLen < currLen:
+                    paths[locVertex] = paths[currV].copy()
+                    paths[locVertex].append(locVertex)
+                
+        
